@@ -178,6 +178,7 @@ print(f"Exported {result['approved_count']} approved samples to output/")</code>
           <pre><code># Process any file directly to Alpaca format JSONL
 forge-dataset process quarterly_report.pdf --engine ollama -o dataset.jsonl
 
+# Process using in-process GGUF model (no server!)
 # Process using in-process GGUF model (no server required)
 forge-dataset process specs.docx --engine llama_cpp --model models/qwen.gguf
 
@@ -202,3 +203,4 @@ forge-dataset engines</code></pre>
   <script src="assets/theme.js"></script>
 </body>
 </html>
+

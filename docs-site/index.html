@@ -180,6 +180,7 @@
               <pre><code>from ForgeDataset import IngestionRouter, HybridChunker, SFTGenerator, QualityGate, DatasetExporter
 from ForgeDataset.engines import LlamaCppEngine
 
+# 1. Load local GGUF model directly in-process (no server required!)
 # 1. Load local GGUF model directly in-process (no server required)
 engine = LlamaCppEngine(
     model_path="models/qwen2.5-7b-instruct.Q4_K_M.gguf",
@@ -187,6 +188,7 @@ engine = LlamaCppEngine(
     n_gpu_layers=-1  # Offload all layers to GPU
 )
 
+# 2. Ingest document & chunk
 # 2. Ingest document and chunk
 doc = IngestionRouter().route("financial_report.pdf")
 chunks = HybridChunker(max_source_context=600).chunk_document(doc)
@@ -286,3 +288,4 @@ generator = SFTGenerator(engine=engine)
   <script src="assets/theme.js"></script>
 </body>
 </html>
+
