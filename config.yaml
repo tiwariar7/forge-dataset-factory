@@ -1,0 +1,103 @@
+# Dataset Factory Configuration
+# 100% Local, Hybrid Document-to-Fine-Tuning Dataset Pipeline
+
+app:
+  name: "Local Dataset Factory"
+  version: "1.0.0"
+  env: "development"
+  host: "127.0.0.1"
+  port: 8000
+  storage_dir: "dataset-factory/storage_data"
+  input_dir: "dataset-factory/input"
+  output_dir: "dataset-factory/output"
+  processed_dir: "dataset-factory/processed"
+  logs_dir: "dataset-factory/logs"
+  database_url: "sqlite:///dataset-factory/storage_data/dataset_factory.db"
+
+ingestion:
+  default_engine: "docling"
+  fallback_engine: "markitdown"
+  ocr:
+    enabled: true
+    engine: "easyocr" # or tesseract
+    language: ["en"]
+  excel:
+    preserve_formulas: true
+    max_rows_per_sheet: 50000
+  quality_check:
+    min_extracted_chars: 50
+    min_text_density: 0.1 # chars per byte
+    fallback_on_empty: true
+
+chunking:
+  default_engine: "hybrid" # Docling HybridChunker
+  max_source_context: 600 # tokens
+  min_merge_size: 150 # tokens
+  merge_peers: true
+  repeat_table_headers: true
+  overlap: 0 # Zero by default to prevent duplicate questions
+  tokenizer_model: "qwen" # maps to cl100k_base or token length approximation
+  specialized:
+    table:
+      max_tokens_per_chunk: 600
+      preserve_row_integrity: true
+    slide:
+      one_slide_unit: true
+      max_tokens_per_chunk: 600
+      merge_consecutive_same_title: true
+    code:
+      preserve_blocks: true
+      max_tokens_per_chunk: 600
+
+generation:
+  ollama:
+    base_url: "http://127.0.0.1:11434"
+    request_timeout: 120
+    # Sequential execution settings for ~7.8GB VRAM
+    enforce_sequential_models: true
+    unload_after_step: true
+  models:
+    generator: "qwen2.5:7b-instruct" # or llama3.1:8b
+    evaluator: "llama3.1:8b" # or qwen2.5:7b-instruct
+    embedding: "sentence-transformers/all-MiniLM-L6-v2"
+  parameters:
+    temperature: 0.3
+    top_p: 0.9
+    max_tokens: 1024
+  qa_counts:
+    min_questions_per_chunk: 2
+    max_questions_per_chunk: 6
+    min_chunk_tokens_for_generation: 60
+  categories:
+    - "definition"
+    - "conceptual"
+    - "application"
+    - "analytical"
+
+evaluation:
+  groundedness:
+    min_evidence_overlap: 0.65
+    strict_sentence_match: true
+  numeric:
+    enforce_exact_calculation: true
+    tolerance: 0.0001
+  deduplication:
+    exact_hash: true
+    semantic_similarity_threshold: 0.88
+  quality_gate:
+    auto_approve_threshold: 0.85
+    review_threshold: 0.60
+    # Below review_threshold is Rejected
+
+export:
+  formats:
+    - "alpaca"
+    - "sharegpt"
+    - "raw_jsonl"
+  train_val_test_split:
+    train: 0.80
+    val: 0.10
+    test: 0.10
+    split_by_document: true # Prevents data leakage between chunks of same doc
+  include_audit_metadata: false # Separate audit record output maintained
+
