@@ -1,7 +1,7 @@
 <p align="center">
   <br />
   <a href="https://tiwariar7.github.io/forge-dataset-factory/">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,24&height=180&section=header&text=ForgeDataset%20⚡&fontSize=52&fontAlignY=38&fontColor=00F0FF&desc=100%25%20Local%20Hybrid%20Document-to-SFT%20Dataset%20Factory&descAlignY=62&descSize=18&descColor=F1F5F9" alt="ForgeDataset Header" width="100%" />
+    <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,24&height=180&section=header&text=ForgeDataset&fontSize=52&fontAlignY=38&fontColor=00F0FF&desc=100%25%20Local%20Hybrid%20Document-to-SFT%20Dataset%20Factory&descAlignY=62&descSize=18&descColor=F1F5F9" alt="ForgeDataset Header" width="100%" />
   </a>
 </p>
 
@@ -20,21 +20,23 @@
 </p>
 
 <p align="center">
-  <a href="https://tiwariar7.github.io/forge-dataset-factory/"><b>📖 Interactive Docs</b></a> •
-  <a href="#-quickstart"><b>🚀 Quickstart</b></a> •
-  <a href="#-supported-inference-engines"><b>🧠 Multi-Engine</b></a> •
-  <a href="#-command-line-interface"><b>🛠️ CLI</b></a> •
-  <a href="#-pipeline-architecture"><b>📐 Architecture</b></a>
+  <a href="https://tiwariar7.github.io/forge-dataset-factory/"><b>Documentation</b></a> |
+  <a href="#quickstart"><b>Quickstart</b></a> |
+  <a href="#supported-inference-engines"><b>Inference Engines</b></a> |
+  <a href="#command-line-interface"><b>CLI</b></a> |
+  <a href="#pipeline-architecture"><b>Architecture</b></a> |
+  <a href="https://github.com/tiwariar7/forge-dataset-factory"><b>GitHub</b></a>
 </p>
 
 ---
 
-> **ForgeDataset** is an industrial-strength Python library designed to transform uncurated business and technical documents (PDF, DOCX, XLSX, PPTX, Markdown, CSV, Code) into production-grade Supervised Fine-Tuning (SFT) datasets with **zero cloud reliance**, **pluggable local LLM backends**, and **non-negotiable character-level evidence grounding**.
+### Documentation Portal
+Comprehensive guides, API specifications, and cookbook recipes are hosted at:  
+**https://tiwariar7.github.io/forge-dataset-factory/**
 
 ---
 
-### 🌐 Live Documentation Website
-Explore interactive tutorials, API specifications, and cookbook recipes on the **[ForgeDataset Documentation Portal](https://tiwariar7.github.io/forge-dataset-factory/)**.
+**ForgeDataset** is an industrial-strength Python library designed to transform uncurated business and technical documents (PDF, DOCX, XLSX, PPTX, Markdown, CSV, Code) into production-grade Supervised Fine-Tuning (SFT) datasets with **zero cloud reliance**, **pluggable local LLM backends**, and **non-negotiable character-level evidence grounding**.
 
 <p align="center">
   <img src="assets/architecture.png" alt="ForgeDataset Pipeline Architecture" width="460" style="border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,0.4);" />
@@ -42,45 +44,42 @@ Explore interactive tutorials, API specifications, and cookbook recipes on the *
 
 ---
 
-## ⚡ What Makes ForgeDataset Different?
+## Core Differentiators
 
 ```
-┌───────────────────────────────┐     ┌───────────────────────────────┐     ┌───────────────────────────────┐
-│     Intelligent Routing       │     │     Hybrid Zero-Overlap       │     │     Multi-Engine Inference    │
-│  Auto-selects Docling,        │ ──► │  Eliminates repetitive        │ ──► │  Direct GGUF (llama.cpp),     │
-│  OpenPyXL, or native parsers  │     │  sliding-window token bleed   │     │  Ollama, or vLLM backends     │
-└───────────────────────────────┘     └───────────────────────────────┘     └───────────────────────────────┘
-                                                                                            │
-┌───────────────────────────────┐     ┌───────────────────────────────┐                     ▼
-│     Training-Ready Export     │     │     Semantic Deduplication    │     ┌───────────────────────────────┐
-│  Document-level split Alpaca, │ ◄── │  Cosine similarity filter     │ ◄── │  Strict Verbatim Quality Gate │
-│  ShareGPT, & Audit JSONL      │     │  prunes redundant queries     │     │  Purges ungrounded answers    │
-└───────────────────────────────┘     └───────────────────────────────┘     └───────────────────────────────┘
+[ Intelligent Routing ]              [ Hybrid Zero-Overlap ]             [ Multi-Engine Inference ]
+  Auto-selects Docling,                Eliminates repetitive               Direct GGUF (llama.cpp),
+  OpenPyXL, or native parsers   -->    sliding-window token bleed   -->    Ollama, or vLLM backends
+                                                                                     |
+                                                                                     v
+[ Training-Ready Export ]            [ Semantic Deduplication ]          [ Strict Verbatim Quality Gate ]
+  Document-level split Alpaca,         Cosine similarity filter            Purges ungrounded answers &
+  ShareGPT, & Audit JSONL       <--    prunes redundant queries     <--    hallucinated numbers
 ```
 
-1. **Pluggable Local Engines**: No vendor lock-in. Run local `.gguf` weights directly in Python with **`llama.cpp`** (zero daemon required), local **`Ollama`** with automatic VRAM purging, or high-throughput batching via **`vLLM`** (`/v1`).
-2. **Strict Verbatim Evidence Provenance**: Non-negotiable rule — every generated completion must quote exact verbatim substring spans from the parent document chunk.
+1. **Pluggable Local Engines**: Run local `.gguf` weights directly in Python with **`llama.cpp`** (zero daemon required), local **`Ollama`** with automatic VRAM purging, or high-throughput batching via **`vLLM`** (`/v1`).
+2. **Strict Verbatim Evidence Provenance**: Non-negotiable rule: every generated completion must quote exact verbatim substring spans from the parent document chunk.
 3. **Symbolic Numeric Validator**: Automatically scans every number, percentage, and metric in the generated answer to verify existence in the source text, preventing hallucinated calculations.
 4. **Zero-Overlap Hybrid Chunking**: Respects document structural hierarchies (`heading_path`) and duplicates table headers across chunk splits without sliding-window token pollution.
-5. **No Database Corruption or Locks**: Operates purely in-memory (`:memory:`) or exports directly to training-ready JSONL/Parquet files.
+5. **No Database Dependencies**: Operates purely in-memory (`:memory:`) or exports directly to training-ready JSONL/Parquet files without disk locking.
 
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
 # Core library
 pip install forge-dataset-factory
 
-# Or with in-process GGUF llama.cpp support
+# With in-process GGUF llama.cpp support
 pip install "forge-dataset-factory[llamacpp]"
 
-# Or with local FastAPI server & dev tooling
+# With local FastAPI server and developer tools
 pip install "forge-dataset-factory[all]"
 ```
 
 <details>
-<summary><b>🔧 Installing from source (Editable mode)</b></summary>
+<summary><b>Installing from source (Editable mode)</b></summary>
 
 ```bash
 git clone https://github.com/tiwariar7/forge-dataset-factory.git
@@ -91,9 +90,9 @@ pip install -e ".[all]"
 
 ---
 
-## 🚀 Quickstart
+## Quickstart
 
-Generate a verified SFT fine-tuning dataset in under 15 lines of Python:
+Generate a verified SFT fine-tuning dataset in Python:
 
 ```python
 from ForgeDataset import (
@@ -113,10 +112,10 @@ chunker = HybridChunker(max_source_context=600, overlap=0)
 chunks = chunker.chunk_document(doc)
 
 # 3. Candidate SFT generation with verbatim evidence citations
-# Supports engine="llama_cpp", "ollama", "openai", or "heuristic"
+# Supported engines: "llama_cpp", "ollama", "openai", "heuristic"
 generator = SFTGenerator(engine="ollama", model="qwen2.5:7b-instruct")
 
-# 4. Strict Quality Gate & Numerical Cross-Check
+# 4. Strict Quality Gate and numerical validation
 gate = QualityGate()
 verified_pairs = []
 
@@ -131,22 +130,22 @@ for chunk in chunks:
 exporter = DatasetExporter(output_dir="output")
 results = exporter.export(verified_pairs, format_type="alpaca", prefix="finance_sft")
 
-print(f"✅ Generated {results['approved_count']} approved SFT examples!")
+print(f"Generated {results['approved_count']} approved SFT examples.")
 ```
 
 ---
 
-## 🧠 Supported Inference Engines
+## Supported Inference Engines
 
-| Engine Backend | Class | Execution Mode | When to Choose |
+| Engine Backend | Class | Execution Mode | Recommended Use Case |
 | :--- | :--- | :--- | :--- |
 | **`llama_cpp`** | `LlamaCppEngine` | **In-process GGUF** | Zero server setup, single GPU (CUDA), Apple Silicon (Metal), or CPU |
 | **`ollama`** | `OllamaEngine` | **HTTP REST Daemon** | Existing local Ollama installations with sequential VRAM management |
 | **`openai`** | `OpenAICompatibleEngine` | **`/v1` HTTP API** | High-throughput production batching with **vLLM**, LM Studio, or LocalAI |
-| **`heuristic`** | `HeuristicEngine` | **Deterministic Regex** | Lightning-fast offline CI/CD test runs with zero GPU dependencies |
+| **`heuristic`** | `HeuristicEngine` | **Deterministic Regex** | Fast offline CI/CD test runs with zero GPU dependencies |
 
 <details>
-<summary><b>💻 Example: In-process GGUF with llama.cpp</b></summary>
+<summary><b>Example: In-process GGUF with llama.cpp</b></summary>
 
 ```python
 from ForgeDataset import SFTGenerator
@@ -165,7 +164,7 @@ pairs = generator.generate_from_chunk(chunk)
 </details>
 
 <details>
-<summary><b>🚀 Example: High-throughput batching with vLLM</b></summary>
+<summary><b>Example: High-throughput batching with vLLM</b></summary>
 
 ```python
 from ForgeDataset import SFTGenerator
@@ -184,9 +183,9 @@ pairs = generator.generate_from_chunk(chunk)
 
 ---
 
-## 🛠️ Command-Line Interface
+## Command-Line Interface
 
-ForgeDataset comes with a command-line interface for headless automation:
+ForgeDataset includes a command-line interface for terminal automation:
 
 ```bash
 # 1. Process a document directly into an Alpaca-format SFT dataset
@@ -204,7 +203,7 @@ forge-dataset server --port 8000
 
 ---
 
-## 📐 Pipeline Architecture
+## Pipeline Architecture
 
 ```mermaid
 sequenceDiagram
@@ -228,7 +227,7 @@ sequenceDiagram
 
 ---
 
-## 🧪 Testing & Verification
+## Testing and Verification
 
 ForgeDataset includes 36 automated unit and integration tests:
 
@@ -242,16 +241,16 @@ python tests/smoke_test_e2e.py
 
 ---
 
-## 📚 Documentation & Resources
+## Documentation Links
 
-- 🌐 **[Documentation Site](https://tiwariar7.github.io/forge-dataset-factory/)**: Interactive guides and cookbooks.
-- 📐 **[Architecture Specification](docs/ARCHITECTURE.md)**: Deep dive into the 6-stage pipeline.
-- 🧠 **[Inference Engines Guide](docs/ENGINES.md)**: Configuration and benchmarks for llama.cpp, Ollama, and vLLM.
-- 📚 **[API Reference](docs/API_REFERENCE.md)**: Full parameter signatures and schemas.
+- **Documentation Portal**: https://tiwariar7.github.io/forge-dataset-factory/
+- **Architecture Specification**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- **Inference Engines Guide**: [docs/ENGINES.md](docs/ENGINES.md)
+- **API Reference**: [docs/API_REFERENCE.md](docs/API_REFERENCE.md)
 
 ---
 
-## 📄 License
+## License
 
 Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
 
