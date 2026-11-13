@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inference Engines — ForgeDataset Documentation</title>
+  <link rel="stylesheet" href="assets/theme.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="brand-wrapper">
+      <a href="index.html" style="display:flex; align-items:center; gap:0.75rem;">
+        <div class="brand-logo">⚡</div>
+        <span class="brand-name">ForgeDataset</span>
+      </a>
+      <span class="brand-badge">v0.1.0</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="search-button" id="search-trigger-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <span>Search documentation...</span>
+        <span class="search-kbd">Ctrl K</span>
+      </button>
+
+      <button class="header-btn" id="theme-toggle-btn" title="Toggle theme">
+        <span id="theme-icon"></span>
+      </button>
+
+      <a href="https://github.com/tiwariar7/forge-dataset-factory" target="_blank" class="github-pill">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Overview</div>
+        <a href="index.html" class="sidebar-link">⚡ Introduction</a>
+        <a href="getting-started.html" class="sidebar-link">🚀 Getting Started</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Architecture</div>
+        <a href="architecture.html" class="sidebar-link">📐 6-Stage Pipeline</a>
+        <a href="engines.html" class="sidebar-link active">🧠 Multi-Engine LLMs</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Reference</div>
+        <a href="api-reference.html" class="sidebar-link">📚 API Reference</a>
+        <a href="examples.html" class="sidebar-link">💡 Cookbooks & Recipes</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-main">
+      <h1 style="font-size: 2.4rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.75rem;">Multi-Engine LLM Inference</h1>
+      <p style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2rem;">ForgeDataset eliminates backend lock-in with a modular engine abstraction.</p>
+
+      <!-- Engine 1: llama.cpp -->
+      <section id="llama-cpp" style="margin-bottom: 3rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+          <h2 style="font-size: 1.6rem; font-weight: 700;">1. llama.cpp (GGUF In-Process)</h2>
+          <span class="brand-badge" style="color:var(--accent-emerald);">Direct In-Process</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+          Run local quantized GGUF weights directly in your Python process with <strong>llama-cpp-python</strong>. No external background daemons or Docker containers required.
+        </p>
+
+        <div class="code-window">
+          <div class="code-header">
+            <div class="code-title">Python</div>
+            <button class="code-copy-btn">Copy</button>
+          </div>
+          <pre><code>from ForgeDataset import SFTGenerator
+from ForgeDataset.engines import LlamaCppEngine
+
+# Point directly to your downloaded .gguf model file
+engine = LlamaCppEngine(
+    model_path="models/qwen2.5-7b-instruct.Q4_K_M.gguf",
+    n_ctx=4096,         # Context window
+    n_gpu_layers=-1     # -1 offloads all layers to GPU (CUDA or Metal)
+)
+
+generator = SFTGenerator(engine=engine)
+pairs = generator.generate_from_chunk(chunk)</code></pre>
+        </div>
+      </section>
+
+      <!-- Engine 2: Ollama -->
+      <section id="ollama" style="margin-bottom: 3rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+          <h2 style="font-size: 1.6rem; font-weight: 700;">2. Ollama (Local Daemon)</h2>
+          <span class="brand-badge">REST API</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+          Connect to your local Ollama instance with automated sequential VRAM purging (<code>keep_alive: 0</code>) to allow running on limited ~8GB VRAM consumer GPUs.
+        </p>
+
+        <div class="code-window">
+          <div class="code-header">
+            <div class="code-title">Python</div>
+            <button class="code-copy-btn">Copy</button>
+          </div>
+          <pre><code>from ForgeDataset import SFTGenerator
+
+generator = SFTGenerator(
+    engine="ollama",
+    model="qwen2.5:7b-instruct",
+    base_url="http://127.0.0.1:11434"
+)
+pairs = generator.generate_from_chunk(chunk)</code></pre>
+        </div>
+      </section>
+
+      <!-- Engine 3: OpenAI Compatible / vLLM -->
+      <section id="openai-compatible" style="margin-bottom: 3rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+          <h2 style="font-size: 1.6rem; font-weight: 700;">3. OpenAI-Compatible (vLLM / LM Studio / LocalAI)</h2>
+          <span class="brand-badge" style="color:var(--accent-amber);">High Throughput</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+          Use any server implementing standard <code>/v1/chat/completions</code>. Ideal for high-throughput batching on server clusters using <strong>vLLM</strong>.
+        </p>
+
+        <div class="code-window">
+          <div class="code-header">
+            <div class="code-title">Python</div>
+            <button class="code-copy-btn">Copy</button>
+          </div>
+          <pre><code>from ForgeDataset import SFTGenerator
+from ForgeDataset.engines import OpenAICompatibleEngine
+
+engine = OpenAICompatibleEngine(
+    model="Qwen/Qwen2.5-7B-Instruct",
+    base_url="http://localhost:8000/v1"
+)
+
+generator = SFTGenerator(engine=engine)
+pairs = generator.generate_from_chunk(chunk)</code></pre>
+        </div>
+      </section>
+
+      <!-- Engine 4: Custom Engine Subclass -->
+      <section id="custom-engine" style="margin-bottom: 3rem;">
+        <h2 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem;">4. Implementing a Custom Engine</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+          To integrate custom models, Hugging Face pipelines, or proprietary backends, subclass <code>LLMEngine</code>:
+        </p>
+
+        <div class="code-window">
+          <div class="code-header">
+            <div class="code-title">custom_engine.py</div>
+            <button class="code-copy-btn">Copy</button>
+          </div>
+          <pre><code>from ForgeDataset.engines import LLMEngine
+from typing import Dict, Any, Optional
+
+class MyCustomEngine(LLMEngine):
+    def is_available(self) -> bool:
+        return True
+
+    def generate(
+        self,
+        prompt: str,
+        system: Optional[str] = None,
+        json_format: bool = True,
+        temperature: float = 0.3,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
+        # Invoke your model and return parsed JSON
+        return {
+            "qa_pairs": [
+                {
+                    "question": "What is the primary formula?",
+                    "answer": "The primary formula is E=mc^2.",
+                    "evidence": "E=mc^2"
+                }
+            ]
+        }
+
+generator = SFTGenerator(engine=MyCustomEngine())</code></pre>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">On this page</div>
+      <a href="#llama-cpp" class="toc-link">1. llama.cpp</a>
+      <a href="#ollama" class="toc-link">2. Ollama</a>
+      <a href="#openai-compatible" class="toc-link">3. vLLM / OpenAI</a>
+      <a href="#custom-engine" class="toc-link">4. Custom Engine</a>
+      <a href="architecture.html" class="toc-link">Next: Architecture →</a>
+    </aside>
+
+  </div>
+
+  <script src="assets/theme.js"></script>
+</body>
+</html>
