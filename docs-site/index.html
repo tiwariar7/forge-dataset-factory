@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ForgeDataset — 100% Local Document-to-SFT Dataset Factory</title>
+  <meta name="description" content="Turn complex documents into Supervised Fine-Tuning datasets with multi-engine local LLM inference (llama.cpp, Ollama, vLLM) and strict evidence provenance." />
+  <link rel="stylesheet" href="assets/theme.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="brand-wrapper">
+      <a href="index.html" style="display:flex; align-items:center; gap:0.75rem;">
+        <div class="brand-logo">⚡</div>
+        <span class="brand-name">ForgeDataset</span>
+      </a>
+      <span class="brand-badge">v0.1.0</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="search-button" id="search-trigger-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <span>Search documentation...</span>
+        <span class="search-kbd">Ctrl K</span>
+      </button>
+
+      <button class="header-btn" id="theme-toggle-btn" title="Toggle theme">
+        <span id="theme-icon"></span>
+      </button>
+
+      <a href="https://github.com/tiwariar7/forge-dataset-factory" target="_blank" class="github-pill">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Docs Layout -->
+  <div class="docs-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Overview</div>
+        <a href="index.html" class="sidebar-link active">⚡ Introduction</a>
+        <a href="getting-started.html" class="sidebar-link">🚀 Getting Started</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Architecture</div>
+        <a href="architecture.html" class="sidebar-link">📐 6-Stage Pipeline</a>
+        <a href="engines.html" class="sidebar-link">🧠 Multi-Engine LLMs</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Reference</div>
+        <a href="api-reference.html" class="sidebar-link">📚 API Reference</a>
+        <a href="examples.html" class="sidebar-link">💡 Cookbooks & Recipes</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-main">
+      
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-pill">⚡ 100% Local Synthetic Dataset Engine</div>
+        <h1 class="hero-title">
+          Build SFT datasets <br />
+          <span class="hero-gradient">directly from enterprise docs.</span>
+        </h1>
+        <p class="hero-subtitle">
+          ForgeDataset is the Python library for generating high-precision Supervised Fine-Tuning datasets with zero cloud fees, multi-engine local LLM support, and non-negotiable character-level evidence grounding.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="getting-started.html" class="btn-primary">
+            <span>Get Started</span>
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          <a href="architecture.html" class="btn-secondary">
+            <span>Explore Architecture</span>
+          </a>
+
+          <div class="pip-install-box">
+            <span style="color: var(--accent-cyan);">$</span>
+            <span class="pip-cmd">pip install forge-dataset-factory</span>
+            <button class="pip-copy-btn" title="Copy to clipboard">
+              <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:2.5rem;">
+          <img src="assets/architecture.png" alt="Architecture" style="max-width: 480px; width: 100%; border-radius: 12px; border: 1px solid var(--border-subtle); box-shadow: 0 16px 40px rgba(0,0,0,0.5);" />
+        </div>
+      </section>
+
+      <!-- Key Capabilities Grid -->
+      <section>
+        <h2 style="font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem;">Why ForgeDataset?</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Built for machine learning engineers who need high-signal training data without vendor lock-in.</p>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3 class="feature-title">Multi-Engine Flexibility</h3>
+            <p class="feature-desc">Switch seamlessly between in-process <strong>llama.cpp</strong> (GGUF), local <strong>Ollama</strong>, and high-throughput <strong>vLLM</strong> (OpenAI-compatible) backends.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3 class="feature-title">Strict Verbatim Grounding</h3>
+            <p class="feature-desc">Non-negotiable evidence rule: every generated answer must quote an exact verbatim character span from the source document.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧩</div>
+            <h3 class="feature-title">Zero Token Overlap</h3>
+            <p class="feature-desc">HybridChunker enforces clean semantic boundaries without sliding window token bleed, preventing repetitive training noise.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔢</div>
+            <h3 class="feature-title">Numeric Validator</h3>
+            <p class="feature-desc">Automatic symbolic cross-check verifies all numbers, percentages, and metrics to eliminate synthetic hallucinations.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3 class="feature-title">Intelligent Routing</h3>
+            <p class="feature-desc">Auto-routes PDFs, Excel sheets, Word files, and presentations to specialized structural extractors (Docling, OpenPyXL, Native).</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📦</div>
+            <h3 class="feature-title">Training-Ready Formats</h3>
+            <p class="feature-desc">One-click export into Alpaca, ShareGPT, and Audit Provenance JSONL with document-level train/val/test splits.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Code Showcase -->
+      <section style="margin-top: 3.5rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem;">Choose Your Inference Engine</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Use whichever model runner matches your infrastructure.</p>
+
+        <div class="tab-container">
+          <div class="tab-nav">
+            <button class="tab-button active">llama.cpp (GGUF in-process)</button>
+            <button class="tab-button">Ollama (Local Daemon)</button>
+            <button class="tab-button">vLLM / OpenAI-Compatible</button>
+          </div>
+
+          <!-- Tab 1: llama.cpp -->
+          <div class="tab-content active">
+            <div class="code-window">
+              <div class="code-header">
+                <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+                <div class="code-title">generate_gguf.py</div>
+                <button class="code-copy-btn">Copy</button>
+              </div>
+              <pre><code>from ForgeDataset import IngestionRouter, HybridChunker, SFTGenerator, QualityGate, DatasetExporter
+from ForgeDataset.engines import LlamaCppEngine
+
+# 1. Load local GGUF model directly in-process (no server required!)
+engine = LlamaCppEngine(
+    model_path="models/qwen2.5-7b-instruct.Q4_K_M.gguf",
+    n_ctx=4096,
+    n_gpu_layers=-1  # Offload all layers to GPU
+)
+
+# 2. Ingest document & chunk
+doc = IngestionRouter().route("financial_report.pdf")
+chunks = HybridChunker(max_source_context=600).chunk_document(doc)
+
+# 3. Generate SFT dataset with strict evidence grounding
+generator = SFTGenerator(engine=engine)
+gate = QualityGate()
+
+approved_pairs = []
+for chunk in chunks:
+    for candidate in generator.generate_from_chunk(chunk):
+        evaluated = gate.evaluate(candidate, chunk)
+        if evaluated.status == "approved":
+            approved_pairs.append((evaluated, chunk))
+
+# 4. Export training dataset
+DatasetExporter(output_dir="output").export(approved_pairs, format_type="alpaca")</code></pre>
+            </div>
+          </div>
+
+          <!-- Tab 2: Ollama -->
+          <div class="tab-content">
+            <div class="code-window">
+              <div class="code-header">
+                <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+                <div class="code-title">generate_ollama.py</div>
+                <button class="code-copy-btn">Copy</button>
+              </div>
+              <pre><code>from ForgeDataset import IngestionRouter, HybridChunker, SFTGenerator, QualityGate, DatasetExporter
+
+# Connect to local Ollama daemon with automatic VRAM purging
+generator = SFTGenerator(
+    engine="ollama",
+    model="qwen2.5:7b-instruct",
+    base_url="http://127.0.0.1:11434"
+)
+
+doc = IngestionRouter().route("system_architecture.docx")
+chunks = HybridChunker().chunk_document(doc)
+
+pairs = [(gate.evaluate(cand, c), c) 
+         for c in chunks 
+         for cand in generator.generate_from_chunk(c)]
+
+DatasetExporter(output_dir="output").export(pairs, format_type="sharegpt")</code></pre>
+            </div>
+          </div>
+
+          <!-- Tab 3: vLLM -->
+          <div class="tab-content">
+            <div class="code-window">
+              <div class="code-header">
+                <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+                <div class="code-title">generate_vllm.py</div>
+                <button class="code-copy-btn">Copy</button>
+              </div>
+              <pre><code>from ForgeDataset import SFTGenerator
+from ForgeDataset.engines import OpenAICompatibleEngine
+
+# High-throughput batch inference with vLLM or LM Studio
+engine = OpenAICompatibleEngine(
+    model="Qwen/Qwen2.5-7B-Instruct",
+    base_url="http://localhost:8000/v1"
+)
+
+generator = SFTGenerator(engine=engine)
+# Ready to process high-volume documents</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">On this page</div>
+      <a href="#" class="toc-link">Overview</a>
+      <a href="#why-forgedataset" class="toc-link">Why ForgeDataset?</a>
+      <a href="#choose-your-inference-engine" class="toc-link">Inference Engines</a>
+      <a href="getting-started.html" class="toc-link">Next: Quickstart →</a>
+    </aside>
+
+  </div>
+
+  <!-- Search Modal Overlay -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-box">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search guides, engines, and APIs..." />
+      </div>
+      <div class="search-results-list" id="search-results"></div>
+    </div>
+  </div>
+
+  <script src="assets/theme.js"></script>
+</body>
+</html>

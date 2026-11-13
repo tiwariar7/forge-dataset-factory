@@ -64,3 +64,4 @@ class HeuristicEngine(LLMEngine):
             })
 
         return {"qa_pairs": qa_pairs}
+

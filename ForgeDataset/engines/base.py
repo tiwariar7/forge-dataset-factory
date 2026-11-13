@@ -42,3 +42,4 @@ class LLMEngine(ABC):
     def unload(self) -> bool:
         """Unload or free model memory if supported by backend."""
         return True
+

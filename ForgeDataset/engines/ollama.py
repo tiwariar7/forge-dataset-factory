@@ -102,3 +102,4 @@ class OllamaEngine(LLMEngine):
                 return True
         except Exception:
             return False
+

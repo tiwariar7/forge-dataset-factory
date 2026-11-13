@@ -124,3 +124,4 @@ output/
 - `Chunk`: Token-budgeted text slice with `heading_path` and `element_ids`.
 - `QAPair`: Generated prompt/completion pair with `evidence` and `status` (`APPROVED`, `NEEDS_REVIEW`, `REJECTED`).
 - `Evidence`: Character-level citation span (`start_char`, `end_char`, `page`).
+

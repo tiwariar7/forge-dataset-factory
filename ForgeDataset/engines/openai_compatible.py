@@ -83,3 +83,4 @@ class OpenAICompatibleEngine(LLMEngine):
         except Exception as e:
             logger.warning(f"OpenAI-compatible request failed: {e}. Falling back to heuristic engine.")
             return self._fallback.generate(prompt=prompt, system=system, json_format=json_format)
+

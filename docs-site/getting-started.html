@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started — ForgeDataset Documentation</title>
+  <link rel="stylesheet" href="assets/theme.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="brand-wrapper">
+      <a href="index.html" style="display:flex; align-items:center; gap:0.75rem;">
+        <div class="brand-logo">⚡</div>
+        <span class="brand-name">ForgeDataset</span>
+      </a>
+      <span class="brand-badge">v0.1.0</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="search-button" id="search-trigger-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <span>Search documentation...</span>
+        <span class="search-kbd">Ctrl K</span>
+      </button>
+
+      <button class="header-btn" id="theme-toggle-btn" title="Toggle theme">
+        <span id="theme-icon"></span>
+      </button>
+
+      <a href="https://github.com/tiwariar7/forge-dataset-factory" target="_blank" class="github-pill">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Overview</div>
+        <a href="index.html" class="sidebar-link">⚡ Introduction</a>
+        <a href="getting-started.html" class="sidebar-link active">🚀 Getting Started</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Architecture</div>
+        <a href="architecture.html" class="sidebar-link">📐 6-Stage Pipeline</a>
+        <a href="engines.html" class="sidebar-link">🧠 Multi-Engine LLMs</a>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-group-title">Reference</div>
+        <a href="api-reference.html" class="sidebar-link">📚 API Reference</a>
+        <a href="examples.html" class="sidebar-link">💡 Cookbooks & Recipes</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-main">
+      <h1 style="font-size: 2.4rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.75rem;">Getting Started</h1>
+      <p style="font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2rem;">Install ForgeDataset and generate your first fine-tuning dataset in under 2 minutes.</p>
+
+      <!-- Section: Installation -->
+      <section id="installation" style="margin-bottom: 3rem;">
+        <h2 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem;">1. Installation</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">ForgeDataset is a pure Python library compatible with Python 3.9 through 3.12.</p>
+
+        <div class="tab-container">
+          <div class="tab-nav">
+            <button class="tab-button active">Standard pip</button>
+            <button class="tab-button">With llama.cpp</button>
+            <button class="tab-button">Full Bundle (All)</button>
+          </div>
+
+          <div class="tab-content active">
+            <div class="code-window">
+              <div class="code-header">
+                <div class="code-title">Terminal</div>
+                <button class="code-copy-btn">Copy</button>
+              </div>
+              <pre><code>pip install forge-dataset-factory</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-content">
+            <div class="code-window">
+              <div class="code-header">
+                <div class="code-title">Terminal (GGUF in-process support)</div>
+                <button class="code-copy-btn">Copy</button>
+              </div>
+              <pre><code>pip install "forge-dataset-factory[llamacpp]"</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-content">
+            <div class="code-window">
+              <div class="code-header">
+                <div class="code-title">Terminal (FastAPI server + llama.cpp + dev tools)</div>
+                <button class="code-copy-btn">Copy</button>
+              </div>
+              <pre><code>pip install "forge-dataset-factory[all]"</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-tip">
+          <div class="callout-title">💡 Offline Testing Tip</div>
+          <div>If you want to run ForgeDataset in CI/CD or offline without setting up Ollama or downloading GGUF models, you can use the built-in <code>engine="heuristic"</code> option!</div>
+        </div>
+      </section>
+
+      <!-- Section: Quickstart -->
+      <section id="quickstart" style="margin-bottom: 3rem;">
+        <h2 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem;">2. First SFT Dataset in Python</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Here is the complete end-to-end Python pipeline:</p>
+
+        <div class="code-window">
+          <div class="code-header">
+            <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+            <div class="code-title">my_first_pipeline.py</div>
+            <button class="code-copy-btn">Copy</button>
+          </div>
+          <pre><code>from ForgeDataset import (
+    IngestionRouter,
+    HybridChunker,
+    SFTGenerator,
+    QualityGate,
+    DatasetExporter,
+)
+
+# Step 1: Intelligent Ingestion (PDF, DOCX, XLSX, Markdown, CSV)
+router = IngestionRouter()
+doc = router.route("my_document.pdf")
+print(f"Extracted {len(doc.elements)} elements via {doc.extracted_by.value}")
+
+# Step 2: Zero-overlap Hybrid Chunking
+chunker = HybridChunker(max_source_context=600, overlap=0)
+chunks = chunker.chunk_document(doc)
+print(f"Created {len(chunks)} contextual chunks")
+
+# Step 3: Candidate SFT Generation with Traceable Evidence
+generator = SFTGenerator(engine="ollama", model="qwen2.5:7b-instruct")
+gate = QualityGate()
+
+approved_pairs = []
+for chunk in chunks:
+    candidates = generator.generate_from_chunk(chunk)
+    for candidate in candidates:
+        evaluated = gate.evaluate(candidate, chunk)
+        if evaluated.status == "approved":
+            approved_pairs.append((evaluated, chunk))
+
+# Step 4: Export to Alpaca format
+exporter = DatasetExporter(output_dir="output")
+result = exporter.export(approved_pairs, format_type="alpaca", prefix="finance_qa")
+
+print(f"Exported {result['approved_count']} approved samples to output/!")</code></pre>
+        </div>
+      </section>
+
+      <!-- Section: CLI -->
+      <section id="cli-usage" style="margin-bottom: 3rem;">
+        <h2 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem;">3. Command-Line Interface (CLI)</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">You can also generate datasets directly from your terminal using the <code>forge-dataset</code> command:</p>
+
+        <div class="code-window">
+          <div class="code-header">
+            <div class="code-title">Terminal</div>
+            <button class="code-copy-btn">Copy</button>
+          </div>
+          <pre><code># Process any file directly to Alpaca format JSONL
+forge-dataset process quarterly_report.pdf --engine ollama -o dataset.jsonl
+
+# Process using in-process GGUF model (no server!)
+forge-dataset process specs.docx --engine llama_cpp --model models/qwen.gguf
+
+# Check which engines are active
+forge-dataset engines</code></pre>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">On this page</div>
+      <a href="#installation" class="toc-link">1. Installation</a>
+      <a href="#quickstart" class="toc-link">2. Python Quickstart</a>
+      <a href="#cli-usage" class="toc-link">3. CLI Usage</a>
+      <a href="engines.html" class="toc-link">Next: Engines Guide →</a>
+    </aside>
+
+  </div>
+
+  <script src="assets/theme.js"></script>
+</body>
+</html>
