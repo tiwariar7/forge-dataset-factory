@@ -15,7 +15,7 @@
   <header class="site-header">
     <div class="brand-wrapper">
       <a href="index.html" style="display:flex; align-items:center; gap:0.75rem;">
-        <div class="brand-logo">⚡</div>
+        <div class="brand-logo">FD</div>
         <span class="brand-name">ForgeDataset</span>
       </a>
       <span class="brand-badge">v0.1.0</span>
@@ -45,20 +45,20 @@
     <aside class="docs-sidebar">
       <div class="sidebar-group">
         <div class="sidebar-group-title">Overview</div>
-        <a href="index.html" class="sidebar-link">⚡ Introduction</a>
-        <a href="getting-started.html" class="sidebar-link">🚀 Getting Started</a>
+        <a href="index.html" class="sidebar-link">Introduction</a>
+        <a href="getting-started.html" class="sidebar-link">Getting Started</a>
       </div>
 
       <div class="sidebar-group">
         <div class="sidebar-group-title">Architecture</div>
-        <a href="architecture.html" class="sidebar-link">📐 6-Stage Pipeline</a>
-        <a href="engines.html" class="sidebar-link">🧠 Multi-Engine LLMs</a>
+        <a href="architecture.html" class="sidebar-link">6-Stage Pipeline</a>
+        <a href="engines.html" class="sidebar-link">Multi-Engine LLMs</a>
       </div>
 
       <div class="sidebar-group">
         <div class="sidebar-group-title">Reference</div>
-        <a href="api-reference.html" class="sidebar-link active">📚 API Reference</a>
-        <a href="examples.html" class="sidebar-link">💡 Cookbooks & Recipes</a>
+        <a href="api-reference.html" class="sidebar-link active">API Reference</a>
+        <a href="examples.html" class="sidebar-link">Cookbooks and Recipes</a>
       </div>
     </aside>
 
@@ -89,11 +89,11 @@ doc = router.route("path/to/file.pdf") -> CanonicalDocument</code></pre>
           <pre><code>from ForgeDataset import HybridChunker
 
 chunker = HybridChunker(
-    max_source_context=600,  # Max token budget per chunk
-    min_merge_size=150,      # Minimum size before merging peer elements
-    merge_peers=True,        # Merge small adjacent elements under same heading
+    max_source_context=600,    # Max token budget per chunk
+    min_merge_size=150,        # Minimum size before merging peer elements
+    merge_peers=True,          # Merge small adjacent elements under same heading
     repeat_table_headers=True, # Repeat table headers across splits
-    overlap=0                # Zero token overlap recommended for SFT
+    overlap=0                  # Zero token overlap recommended for SFT
 )
 chunks = chunker.chunk_document(doc) -> List[Chunk]</code></pre>
         </div>
@@ -162,7 +162,7 @@ res = exporter.export(
       <a href="#sft-generator" class="toc-link">SFTGenerator</a>
       <a href="#quality-gate" class="toc-link">QualityGate</a>
       <a href="#dataset-exporter" class="toc-link">DatasetExporter</a>
-      <a href="examples.html" class="toc-link">Next: Cookbooks →</a>
+      <a href="examples.html" class="toc-link">Next: Cookbooks</a>
     </aside>
 
   </div>

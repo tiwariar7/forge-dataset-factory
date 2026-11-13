@@ -16,7 +16,7 @@
   <header class="site-header">
     <div class="brand-wrapper">
       <a href="index.html" style="display:flex; align-items:center; gap:0.75rem;">
-        <div class="brand-logo">⚡</div>
+        <div class="brand-logo">FD</div>
         <span class="brand-name">ForgeDataset</span>
       </a>
       <span class="brand-badge">v0.1.0</span>
@@ -47,20 +47,20 @@
     <aside class="docs-sidebar">
       <div class="sidebar-group">
         <div class="sidebar-group-title">Overview</div>
-        <a href="index.html" class="sidebar-link active">⚡ Introduction</a>
-        <a href="getting-started.html" class="sidebar-link">🚀 Getting Started</a>
+        <a href="index.html" class="sidebar-link active">Introduction</a>
+        <a href="getting-started.html" class="sidebar-link">Getting Started</a>
       </div>
 
       <div class="sidebar-group">
         <div class="sidebar-group-title">Architecture</div>
-        <a href="architecture.html" class="sidebar-link">📐 6-Stage Pipeline</a>
-        <a href="engines.html" class="sidebar-link">🧠 Multi-Engine LLMs</a>
+        <a href="architecture.html" class="sidebar-link">6-Stage Pipeline</a>
+        <a href="engines.html" class="sidebar-link">Multi-Engine LLMs</a>
       </div>
 
       <div class="sidebar-group">
         <div class="sidebar-group-title">Reference</div>
-        <a href="api-reference.html" class="sidebar-link">📚 API Reference</a>
-        <a href="examples.html" class="sidebar-link">💡 Cookbooks & Recipes</a>
+        <a href="api-reference.html" class="sidebar-link">API Reference</a>
+        <a href="examples.html" class="sidebar-link">Cookbooks and Recipes</a>
       </div>
     </aside>
 
@@ -69,7 +69,7 @@
       
       <!-- Hero Section -->
       <section class="hero-section">
-        <div class="hero-pill">⚡ 100% Local Synthetic Dataset Engine</div>
+        <div class="hero-pill">100% Local Synthetic Dataset Engine</div>
         <h1 class="hero-title">
           Build SFT datasets <br />
           <span class="hero-gradient">directly from enterprise docs.</span>
@@ -97,7 +97,7 @@
         </div>
 
         <div style="text-align:center; margin-top:2.5rem;">
-          <img src="assets/architecture.png" alt="Architecture" style="max-width: 480px; width: 100%; border-radius: 12px; border: 1px solid var(--border-subtle); box-shadow: 0 16px 40px rgba(0,0,0,0.5);" />
+          <img src="assets/architecture.svg" alt="ForgeDataset Pipeline Architecture" style="max-width: 760px; width: 100%; border-radius: 12px; border: 1px solid var(--border-subtle); box-shadow: 0 16px 40px rgba(0,0,0,0.5);" />
         </div>
       </section>
 
@@ -108,37 +108,49 @@
 
         <div class="feature-grid">
           <div class="feature-card">
-            <div class="feature-icon">🧠</div>
+            <div class="feature-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+            </div>
             <h3 class="feature-title">Multi-Engine Flexibility</h3>
             <p class="feature-desc">Switch seamlessly between in-process <strong>llama.cpp</strong> (GGUF), local <strong>Ollama</strong>, and high-throughput <strong>vLLM</strong> (OpenAI-compatible) backends.</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
+            <div class="feature-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
             <h3 class="feature-title">Strict Verbatim Grounding</h3>
             <p class="feature-desc">Non-negotiable evidence rule: every generated answer must quote an exact verbatim character span from the source document.</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">🧩</div>
+            <div class="feature-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+            </div>
             <h3 class="feature-title">Zero Token Overlap</h3>
             <p class="feature-desc">HybridChunker enforces clean semantic boundaries without sliding window token bleed, preventing repetitive training noise.</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">🔢</div>
+            <div class="feature-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/></svg>
+            </div>
             <h3 class="feature-title">Numeric Validator</h3>
             <p class="feature-desc">Automatic symbolic cross-check verifies all numbers, percentages, and metrics to eliminate synthetic hallucinations.</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">🔍</div>
+            <div class="feature-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg>
+            </div>
             <h3 class="feature-title">Intelligent Routing</h3>
             <p class="feature-desc">Auto-routes PDFs, Excel sheets, Word files, and presentations to specialized structural extractors (Docling, OpenPyXL, Native).</p>
           </div>
 
           <div class="feature-card">
-            <div class="feature-icon">📦</div>
+            <div class="feature-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            </div>
             <h3 class="feature-title">Training-Ready Formats</h3>
             <p class="feature-desc">One-click export into Alpaca, ShareGPT, and Audit Provenance JSONL with document-level train/val/test splits.</p>
           </div>
@@ -168,14 +180,14 @@
               <pre><code>from ForgeDataset import IngestionRouter, HybridChunker, SFTGenerator, QualityGate, DatasetExporter
 from ForgeDataset.engines import LlamaCppEngine
 
-# 1. Load local GGUF model directly in-process (no server required!)
+# 1. Load local GGUF model directly in-process (no server required)
 engine = LlamaCppEngine(
     model_path="models/qwen2.5-7b-instruct.Q4_K_M.gguf",
     n_ctx=4096,
     n_gpu_layers=-1  # Offload all layers to GPU
 )
 
-# 2. Ingest document & chunk
+# 2. Ingest document and chunk
 doc = IngestionRouter().route("financial_report.pdf")
 chunks = HybridChunker(max_source_context=600).chunk_document(doc)
 
@@ -255,7 +267,7 @@ generator = SFTGenerator(engine=engine)
       <a href="#" class="toc-link">Overview</a>
       <a href="#why-forgedataset" class="toc-link">Why ForgeDataset?</a>
       <a href="#choose-your-inference-engine" class="toc-link">Inference Engines</a>
-      <a href="getting-started.html" class="toc-link">Next: Quickstart →</a>
+      <a href="getting-started.html" class="toc-link">Next: Quickstart</a>
     </aside>
 
   </div>
