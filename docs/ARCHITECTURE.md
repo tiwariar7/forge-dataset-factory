@@ -3,7 +3,7 @@
 ForgeDataset is designed as a **100% local, hybrid document-to-SFT dataset factory**. It turns complex, messy business and technical documents into production-grade Supervised Fine-Tuning (SFT) training datasets.
 
 <p align="center">
-  <img src="../assets/architecture.png" alt="ForgeDataset Architecture" width="450" />
+  <img src="../assets/architecture.svg" alt="ForgeDataset Architecture" width="760" />
 </p>
 
 ---

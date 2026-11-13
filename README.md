@@ -39,7 +39,7 @@ Comprehensive guides, API specifications, and cookbook recipes are hosted at:
 **ForgeDataset** is an industrial-strength Python library designed to transform uncurated business and technical documents (PDF, DOCX, XLSX, PPTX, Markdown, CSV, Code) into production-grade Supervised Fine-Tuning (SFT) datasets with **zero cloud reliance**, **pluggable local LLM backends**, and **non-negotiable character-level evidence grounding**.
 
 <p align="center">
-  <img src="assets/architecture.png" alt="ForgeDataset Pipeline Architecture" width="460" style="border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,0.4);" />
+  <img src="assets/architecture.svg" alt="ForgeDataset Pipeline Architecture" width="760" style="border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,0.4);" />
 </p>
 
 ---

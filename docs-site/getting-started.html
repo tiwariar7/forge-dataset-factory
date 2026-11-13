@@ -15,7 +15,7 @@
   <header class="site-header">
     <div class="brand-wrapper">
       <a href="index.html" style="display:flex; align-items:center; gap:0.75rem;">
-        <div class="brand-logo">⚡</div>
+        <div class="brand-logo">FD</div>
         <span class="brand-name">ForgeDataset</span>
       </a>
       <span class="brand-badge">v0.1.0</span>
@@ -45,20 +45,20 @@
     <aside class="docs-sidebar">
       <div class="sidebar-group">
         <div class="sidebar-group-title">Overview</div>
-        <a href="index.html" class="sidebar-link">⚡ Introduction</a>
-        <a href="getting-started.html" class="sidebar-link active">🚀 Getting Started</a>
+        <a href="index.html" class="sidebar-link">Introduction</a>
+        <a href="getting-started.html" class="sidebar-link active">Getting Started</a>
       </div>
 
       <div class="sidebar-group">
         <div class="sidebar-group-title">Architecture</div>
-        <a href="architecture.html" class="sidebar-link">📐 6-Stage Pipeline</a>
-        <a href="engines.html" class="sidebar-link">🧠 Multi-Engine LLMs</a>
+        <a href="architecture.html" class="sidebar-link">6-Stage Pipeline</a>
+        <a href="engines.html" class="sidebar-link">Multi-Engine LLMs</a>
       </div>
 
       <div class="sidebar-group">
         <div class="sidebar-group-title">Reference</div>
-        <a href="api-reference.html" class="sidebar-link">📚 API Reference</a>
-        <a href="examples.html" class="sidebar-link">💡 Cookbooks & Recipes</a>
+        <a href="api-reference.html" class="sidebar-link">API Reference</a>
+        <a href="examples.html" class="sidebar-link">Cookbooks and Recipes</a>
       </div>
     </aside>
 
@@ -111,8 +111,8 @@
         </div>
 
         <div class="callout callout-tip">
-          <div class="callout-title">💡 Offline Testing Tip</div>
-          <div>If you want to run ForgeDataset in CI/CD or offline without setting up Ollama or downloading GGUF models, you can use the built-in <code>engine="heuristic"</code> option!</div>
+          <div class="callout-title">Offline Testing Note</div>
+          <div>If you want to run ForgeDataset in CI/CD or offline without setting up Ollama or downloading GGUF models, you can use the built-in <code>engine="heuristic"</code> option.</div>
         </div>
       </section>
 
@@ -161,7 +161,7 @@ for chunk in chunks:
 exporter = DatasetExporter(output_dir="output")
 result = exporter.export(approved_pairs, format_type="alpaca", prefix="finance_qa")
 
-print(f"Exported {result['approved_count']} approved samples to output/!")</code></pre>
+print(f"Exported {result['approved_count']} approved samples to output/.")</code></pre>
         </div>
       </section>
 
@@ -178,7 +178,7 @@ print(f"Exported {result['approved_count']} approved samples to output/!")</code
           <pre><code># Process any file directly to Alpaca format JSONL
 forge-dataset process quarterly_report.pdf --engine ollama -o dataset.jsonl
 
-# Process using in-process GGUF model (no server!)
+# Process using in-process GGUF model (no server required)
 forge-dataset process specs.docx --engine llama_cpp --model models/qwen.gguf
 
 # Check which engines are active
@@ -194,7 +194,7 @@ forge-dataset engines</code></pre>
       <a href="#installation" class="toc-link">1. Installation</a>
       <a href="#quickstart" class="toc-link">2. Python Quickstart</a>
       <a href="#cli-usage" class="toc-link">3. CLI Usage</a>
-      <a href="engines.html" class="toc-link">Next: Engines Guide →</a>
+      <a href="engines.html" class="toc-link">Next: Engines Guide</a>
     </aside>
 
   </div>
