@@ -1,14 +1,11 @@
 <p align="center">
-  <br />
-  <a href="https://tiwariar7.github.io/forge-dataset-factory/">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,24&height=180&section=header&text=ForgeDataset&fontSize=52&fontAlignY=38&fontColor=00F0FF&desc=100%25%20Local%20Hybrid%20Document-to-SFT%20Dataset%20Factory&descAlignY=62&descSize=18&descColor=F1F5F9" alt="ForgeDataset Header" width="100%" />
-  </a>
+  <img src="assets/forge-dataset-mark.svg" alt="ForgeDataset mark" width="76" />
 </p>
 
+<h1 align="center">ForgeDataset</h1>
+
 <p align="center">
-  <a href="https://tiwariar7.github.io/forge-dataset-factory/">
-    <img src="https://readme-typing-svg.demolab.com?font=Plus+Jakarta+Sans&weight=700&size=22&duration=2800&pause=1000&color=00F0FF&center=true&vCenter=true&width=750&lines=100%25+Local+Document-to-SFT+Dataset+Factory;Multi-Engine%3A+llama.cpp+(GGUF)+%7C+Ollama+%7C+vLLM;Zero+Token+Overlap+Hybrid+Chunking;Strict+Character-Level+Evidence+Grounding;Automated+Numeric+%26+Symbolic+Validation" alt="Typing Animation" />
-  </a>
+  <strong>Local document-to-SFT dataset generation with evidence-grounded verification.</strong>
 </p>
 
 <p align="center">

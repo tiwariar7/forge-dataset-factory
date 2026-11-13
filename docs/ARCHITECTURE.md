@@ -3,7 +3,7 @@
 ForgeDataset is designed as a **100% local, hybrid document-to-SFT dataset factory**. It turns complex, messy business and technical documents into production-grade Supervised Fine-Tuning (SFT) training datasets.
 
 <p align="center">
-  <img src="../assets/architecture.svg" alt="ForgeDataset Architecture" width="760" />
+  <img src="../assets/architecture.svg" alt="Six-stage ForgeDataset pipeline from document ingestion through verified dataset export" width="900" />
 </p>
 
 ---
@@ -40,13 +40,17 @@ flowchart TD
 - **Scanned Documents**: Fallback to OCR layout parser.
 - **Normalizes** all documents into a unified `CanonicalDocument` schema with element IDs, bounding boxes, and heading hierarchies.
 
-### 2. Hybrid Chunking Engine (`ForgeDataset.chunking`)
+### 2. Canonical Document Schema (`ForgeDataset.normalization`)
+- Converts parser output into a consistent structure with stable element IDs, heading paths, source metadata, and optional page coordinates.
+- Preserves tables, code blocks, slides, and provenance details so downstream stages do not depend on parser-specific formats.
+
+### 3. Hybrid Chunking Engine (`ForgeDataset.chunking`)
 - Preserves document hierarchy by tracking `heading_path` (e.g. `['Database', 'PostgreSQL', 'MVCC']`).
 - **Zero-Overlap Guarantee**: Eliminates token bleed between training examples.
 - **Table Awareness**: Preserves Markdown/CSV tables with repeated table headers across table chunk splits.
 - **Code & Slide Awareness**: Keeps code blocks and presentation slides intact.
 
-### 3. Multi-Engine SFT Generator (`ForgeDataset.generation` & `ForgeDataset.engines`)
+### 4. Multi-Engine SFT Generator (`ForgeDataset.generation` & `ForgeDataset.engines`)
 - Supports **pluggable local backends**:
   - `llama-cpp-python` for in-process GGUF model execution (no background server needed).
   - `Ollama` for local daemon execution with VRAM purging (`keep_alive: 0`).
@@ -59,12 +63,12 @@ flowchart TD
   - *Analytical*
 - Enforces strict verbatim evidence extraction: every generated completion must quote exact source phrases from the chunk.
 
-### 4. Verification & Quality Gate (`ForgeDataset.evaluation`)
+### 5. Verification, Review & Storage (`ForgeDataset.evaluation` & `ForgeDataset.storage`)
 - **Non-Negotiable Evidence Rule**: Candidate pairs without exact character-level verbatim matches in the source chunk are instantly rejected.
 - **Numeric & Symbolic Validator**: Checks all numbers, percentages, and units in the answer against the cited source chunk to prevent hallucinated numbers.
 - **Semantic Deduplication**: Uses `sentence-transformers` embeddings (`all-MiniLM-L6-v2`) with cosine similarity thresholding (default `0.88`) to prune near-duplicate questions.
 
-### 5. Review & Storage Layer (`ForgeDataset.storage`)
+#### Review & Storage Layer (`ForgeDataset.storage`)
 - Optional SQLite persistence (`DatabaseManager`).
 - Defaults to `:memory:` for clean library usage.
 - Allows persistent audit trails for enterprise compliance.

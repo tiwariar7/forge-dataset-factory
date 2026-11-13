@@ -15,7 +15,7 @@
   <header class="site-header">
     <div class="brand-wrapper">
       <a href="index.html" style="display:flex; align-items:center; gap:0.75rem;">
-        <div class="brand-logo">FD</div>
+        <img class="brand-logo" src="assets/forge-dataset-mark.svg" alt="" />
         <span class="brand-name">ForgeDataset</span>
       </a>
       <span class="brand-badge">v0.1.0</span>
@@ -161,7 +161,7 @@ for chunk in chunks:
 exporter = DatasetExporter(output_dir="output")
 result = exporter.export(approved_pairs, format_type="alpaca", prefix="finance_qa")
 
-print(f"Exported {result['approved_count']} approved samples to output/.")</code></pre>
+print(f"Exported {result['approved_count']} approved samples to output/")</code></pre>
         </div>
       </section>
 
